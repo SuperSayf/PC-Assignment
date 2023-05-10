@@ -3,6 +3,21 @@
 
 using namespace std;
 
+void validatePrefixSum(const vector<int>& temp, const vector<int>& final) {
+    int curr = 0;
+
+    for (const auto& t : temp) {
+        curr += t;
+
+        if (final[&t - &temp[0]] != curr) {
+            printf("INVALID PREFIX SUM\n");
+            exit(1);
+        }
+    }
+
+    printf("VALID PREFIX SUM\n");
+}
+
 void checkIfPowerOfTwo(int n) {
     // Check if the size of the input array is a power of two
     if (n == 0) {
@@ -57,8 +72,11 @@ int main() {
     for (size_t i = 0; i < nums.size(); i++) {
         final[i] = nums[i] + temp[i];
     }
- 
-    // Print the final result
+
+    // Check if the prefix sum is correct
+    validatePrefixSum(temp, final);
+
+    // Print the prefix sum
     for (size_t i = 0; i < final.size(); i++) {
         cout << final[i] << " ";
     }
