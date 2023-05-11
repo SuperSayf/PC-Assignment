@@ -50,12 +50,17 @@ void blelloch_scan(vector<int> &nums)
 
     // Up-sweep (reduce) phase
     int last = 0;
-    for (int d = 1; d < n; d *= 2)
+#pragma omp parallel default(none) shared(nums, n) reduction(+ : last)
     {
-        for (int i = 0; i < n; i += 2 * d)
+        for (int d = 1; d < n; d *= 2)
         {
-            nums[i + 2 * d - 1] += nums[i + d - 1];
+#pragma omp for
+            for (int i = 0; i < n; i += 2 * d)
+            {
+                nums[i + 2 * d - 1] += nums[i + d - 1];
+            }
         }
+#pragma omp single
         last = nums[n - 1];
     }
 
@@ -65,6 +70,7 @@ void blelloch_scan(vector<int> &nums)
     // Down-sweep (scan) phase
     for (int d = n / 2; d > 0; d /= 2)
     {
+#pragma omp parallel for
         for (int i = 0; i < n; i += 2 * d)
         {
             int t = nums[i + d - 1];
@@ -83,6 +89,7 @@ void blelloch_scan(vector<int> &nums)
 
 int main()
 {
+
     // Read input from CSV file
     vector<int> nums;
     int num;
