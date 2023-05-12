@@ -1,44 +1,37 @@
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <cmath>
+#include <chrono>
+#include <random>
 #include <fstream>
-
-using namespace std;
 
 int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        cerr << "Usage: " << argv[0] << " n" << endl;
+        std::cerr << "Usage: " << argv[0] << " n" << std::endl;
         return 1;
     }
 
-    int n = atoi(argv[1]);
+    int n = std::atoi(argv[1]);
 
     if (n < 0)
     {
-        cerr << "Error: n must be non-negative." << endl;
+        std::cerr << "Error: n must be non-negative." << std::endl;
         return 1;
     }
 
-    int size = pow(2, n);
+    int size = 1 << n;
     int *arr = new int[size];
-    srand(time(nullptr));
 
-    // Initialize CSV file
-    ofstream output_file("input.csv");
-
-    // Initialize CSV header
-    output_file << "input" << endl;
+    std::mt19937 generator(std::chrono::system_clock::now().time_since_epoch().count());
+    std::uniform_int_distribution<int> distribution(0, 100);
 
     for (int i = 0; i < size; i++)
     {
-        arr[i] = rand() % 101; // generate random numbers between 0 and 100
-
-        // Add to CSV file
-        output_file << arr[i] << endl;
+        arr[i] = distribution(generator);
     }
+
+    std::ofstream output_file("input.bin", std::ios::binary | std::ios::out);
+    output_file.write(reinterpret_cast<const char *>(arr), size * sizeof(int));
 
     delete[] arr;
 

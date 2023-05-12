@@ -93,12 +93,9 @@ int main()
     // Read input from CSV file
     vector<int> nums;
     int num;
-    ifstream input_file("input.csv");
+    ifstream input_file("input.bin", ios::binary);
 
-    // Skip the first line
-    input_file.ignore(numeric_limits<streamsize>::max(), '\n');
-
-    while (input_file >> num)
+    while (input_file.read(reinterpret_cast<char *>(&num), sizeof(int)))
     {
         nums.push_back(num);
     }
@@ -127,6 +124,10 @@ int main()
 
     // Print the time taken in ms
     cout << "Time taken: " << (end - start) * 1000 << " ms" << endl;
+
+    // Save the time to a CSV file
+    ofstream output_file("output.csv", ios::app);
+    output_file << (end - start) * 1000 << endl;
 
     // Check if the prefix sum is correct
     validatePrefixSum(temp, nums);
