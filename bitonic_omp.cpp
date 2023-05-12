@@ -58,6 +58,7 @@ void bitonicSort(vector<int> &numbers, size_t left, size_t size)
 
     for (size_t i = 0; i < itr; ++i)
     {
+#pragma omp parallel for private(increasing)
         for (size_t j = 0; j < size; j += groupSize)
         {
             increasing = ((j / groupSize) % 2 == 0);
@@ -89,6 +90,8 @@ int main()
 
     // Start the timer
     double start = omp_get_wtime();
+
+    // bitonicSort(nums, 0, myVecSize, isAscending);
 
     bitonicSort(nums, 0, myVecSize);
 
