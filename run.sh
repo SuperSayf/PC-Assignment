@@ -39,42 +39,55 @@ echo "Completed: Generated $n random numbers"
 # Leave a blank line
 echo ""
 
-# Title for the first program
-echo "-------------------------Running scan program--------------------------"
+# # Title for the first program
+# echo "-------------------------Running scan program--------------------------"
 
-./scan
+# ./scan
+
+# # Leave a blank line
+# echo ""
+
+# # Title for the second program
+# echo "------------------------Running scan_omp program-----------------------"
+
+# ./scan_omp
+
+# # Leave a blank line
+# echo ""
+
+# # Title for speedup
+# echo "---------------------------------Speedup-------------------------------"
+
+# # Leave a blank line
+# echo ""
+
+# # Read the times from the output csv file, each time is in a new line in the same file
+# line1=$(sed -n '1p' output.csv)
+# line2=$(sed -n '2p' output.csv)
+
+# # Output the times
+# echo "Serial Time: $line1 ms"
+# echo "Parallel Time: $line2 ms"
+
+# # Calculate the speedup or speeddown based on the ratio of serial time to parallel time
+# ratio=$(echo "scale=2; $line1/$line2" | bc)
+# if [ $(echo "$ratio <= 1" | bc) -eq 1 ]; then
+#     speeddown=$(echo "scale=2; $line2/$line1" | bc)
+#     echo "Speed-up: INVALID, received speed-down of $speeddown"
+# else
+#     speedup=$(echo "scale=2; $line1/$line2" | bc)
+#     echo "Speed-up: $speedup"
+# fi
+
+echo ""
+
+# Title for the third program
+echo "-----------------------------Running bitonic program----------------------"
 
 # Leave a blank line
 echo ""
 
-# Title for the second program
-echo "------------------------Running scan_omp program-----------------------"
-
-./scan_omp
+./bitonic
 
 # Leave a blank line
 echo ""
-
-# Title for speedup
-echo "---------------------------------Speedup-------------------------------"
-
-# Leave a blank line
-echo ""
-
-# Read the times from the output csv file, each time is in a new line in the same file
-line1=$(sed -n '1p' output.csv)
-line2=$(sed -n '2p' output.csv)
-
-# Output the times
-echo "Serial Time: $line1 ms"
-echo "Parallel Time: $line2 ms"
-
-# Calculate the speedup or speeddown based on the ratio of serial time to parallel time
-ratio=$(echo "scale=2; $line1/$line2" | bc)
-if [ $(echo "$ratio <= 1" | bc) -eq 1 ]; then
-    speeddown=$(echo "scale=2; $line2/$line1" | bc)
-    echo "Speed-up: INVALID, received speed-down of $speeddown"
-else
-    speedup=$(echo "scale=2; $line1/$line2" | bc)
-    echo "Speed-up: $speedup"
-fi
