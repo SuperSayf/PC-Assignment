@@ -13,8 +13,20 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+# Title for start of number generation
+echo "-----------------------Starting Number Generation-----------------------"
+
+# Leave a blank line
+echo ""
+
 # Generate input data
-./generator 20
+./generator 25
+
+# Title for end of number generation
+echo "-----------------------Completed Number Generation-----------------------"
+
+# Leave a blank line
+echo ""
 
 # Title for the first program
 echo "-----------------------Running scan program-----------------------"
