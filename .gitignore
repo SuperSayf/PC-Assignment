@@ -1,0 +1,5 @@
+generator
+scan
+scan_omp
+input.bin
+output.csv
