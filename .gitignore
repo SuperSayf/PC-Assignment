@@ -1,5 +1,8 @@
 generator
 scan
 scan_omp
+scan_mpi
+bitonic
+bitonic_omp
 input.bin
 output.csv
