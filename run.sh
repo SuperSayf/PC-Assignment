@@ -21,25 +21,25 @@ fi
 
 echo ""
 
-# Title for start of number generation
-echo "-----------------------Starting Number Generation----------------------"
+./sssp
 
-# Leave a blank line
-echo ""
+# # Title for start of number generation
+# echo "-----------------------Starting Number Generation----------------------"
 
-# Generate input data
-./generator $arg1
+# # Leave a blank line
+# echo ""
 
-# Calculate 2^n
-n=$((2**$arg1))
+# # Generate input data
+# ./generator $arg1
 
-# Title for end of number generation
-echo "Completed: Generated $n random numbers"
+# # Calculate 2^n
+# n=$((2**$arg1))
 
-# Leave a blank line
-echo ""
+# # Title for end of number generation
+# echo "Completed: Generated $n random numbers"
 
-mpirun -np 2 ./scan_mpi
+# # Leave a blank line
+# echo ""
 
 # # Title for the first program
 # echo "-------------------------Running scan program--------------------------"
@@ -128,3 +128,5 @@ mpirun -np 2 ./scan_mpi
 #     speedup=$(echo "scale=2; $line1/$line2" | bc)
 #     echo "Speed-up: $speedup"
 # fi
+
+# mpirun -np 1 ./scan_mpi
