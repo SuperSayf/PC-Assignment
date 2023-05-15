@@ -90,6 +90,10 @@ void blelloch_scan(vector<int> &nums)
 int main()
 {
 
+    // Get the max number of threads
+    int num_threads = omp_get_max_threads();
+    omp_set_num_threads(num_threads);
+
     // Read input from CSV file
     vector<int> nums;
     int num;
