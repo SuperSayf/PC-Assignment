@@ -73,6 +73,10 @@ int main()
 
     // vector<int> nums = {3, 7, 4};
 
+    // omp_set_dynamic(0);
+    int maxNumberOfThreads = omp_get_max_threads() - 2;
+    omp_set_num_threads(maxNumberOfThreads);
+
     vector<int> nums;
     int num;
     ifstream input_file("input.bin", ios::binary);

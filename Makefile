@@ -5,13 +5,14 @@ P4=bitonic
 P5=bitonic_omp
 P6=scan_mpi
 P7=sssp
+P8=bitonic_mpi
 #INC="./inc"
 #FLAGS=-I$(INC)
 OMPFLAG=-fopenmp
 CC=g++
 CFLAGS = -g -Wall
 
-all: scan $(P1) $(P2) $(P3) $(P4) $(P5) $(P6) $(P7)
+all: scan $(P1) $(P2) $(P3) $(P4) $(P5) $(P6) $(P7) $(P8)
 
 $(P1): $(P1).cpp
 	$(CC) $(CFLAGS) $(OMPFLAG) $(P1).cpp -o $(P1)
@@ -34,5 +35,8 @@ $(P6): $(P6).cpp
 $(P7): $(P7).cpp
 	$(CC) $(CFLAGS) $(OMPFLAG) $(P7).cpp -o $(P7)
 
+$(P8): $(P8).cpp
+	mpic++ $(CFLAGS) $(OMPFLAG) $(P8).cpp -o $(P8)
+
 clean:
-	rm -vf $(P1) $(P2) $(P3) $(P4) $(P5) $(P6) $(P7)
+	rm -vf $(P1) $(P2) $(P3) $(P4) $(P5) $(P6) $(P7) $(P8)
