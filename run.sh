@@ -48,6 +48,7 @@ if [ "$arg3" = "automatic" ]; then
     echo "Completed: Generated $n random numbers"
 
     # Leave a blank line
+    echo "------------------------------------------------------------------------"
     echo ""  
 fi
 
@@ -123,14 +124,26 @@ if [ "$arg2" = "scan" ]; then
 
     echo ""
 
-    # Calculate the speedup or speeddown
+    col_width=35
+
+    # Calculate the speedup or speeddown between the serial and parallel times
+    ratio=$(echo "scale=2; $line1/$line2" | bc)
+    if [ $(echo "$ratio <= 1" | bc) -eq 1 ]; then
+        speeddown=$(echo "scale=2; $line2/$line1" | bc)
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-down (Serial vs Parallel):" "INVALID, received speed-down of $speeddown"
+    else
+        speedup=$(echo "scale=2; $line1/$line2" | bc)
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-up (Serial vs Parallel):" "$speedup"
+    fi
+
+    # Calculate the speedup or speeddown between the serial and MPI times
     ratio=$(echo "scale=2; $line1/$line3" | bc)
     if [ $(echo "$ratio <= 1" | bc) -eq 1 ]; then
         speeddown=$(echo "scale=2; $line3/$line1" | bc)
-        printf "%-${col_width}s %-${col_width}s\n" "Speed-down:" "INVALID, received speed-down of $speeddown"
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-down (Serial vs MPI):" "INVALID, received speed-down of $speeddown"
     else
         speedup=$(echo "scale=2; $line1/$line3" | bc)
-        printf "%-${col_width}s %-${col_width}s\n" "Speed-up:" "$speedup"
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-up (Serial vs MPI):" "$speedup"
     fi
 
     echo ""
@@ -216,14 +229,26 @@ if [ "$arg2" = "bitonic" ]; then
 
     echo ""
 
-    # Calculate the speedup or speeddown
+    col_width=30
+
+    # Calculate the speedup or speeddown between the serial and parallel times
+    ratio=$(echo "scale=2; $line1/$line2" | bc)
+    if [ $(echo "$ratio <= 1" | bc) -eq 1 ]; then
+        speeddown=$(echo "scale=2; $line2/$line1" | bc)
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-down (Serial vs Parallel):" "INVALID, received speed-down of $speeddown"
+    else
+        speedup=$(echo "scale=2; $line1/$line2" | bc)
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-up (Serial vs Parallel):" "$speedup"
+    fi
+
+    # Calculate the speedup or speeddown between the serial and MPI times
     ratio=$(echo "scale=2; $line1/$line3" | bc)
     if [ $(echo "$ratio <= 1" | bc) -eq 1 ]; then
         speeddown=$(echo "scale=2; $line3/$line1" | bc)
-        printf "%-${col_width}s %-${col_width}s\n" "Speed-down:" "INVALID, received speed-down of $speeddown"
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-down (Serial vs MPI):" "INVALID, received speed-down of $speeddown"
     else
         speedup=$(echo "scale=2; $line1/$line3" | bc)
-        printf "%-${col_width}s %-${col_width}s\n" "Speed-up:" "$speedup"
+        printf "%-${col_width}s %-${col_width}s\n" "Speed-up (Serial vs MPI):" "$speedup"
     fi
 
     echo ""
