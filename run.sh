@@ -48,6 +48,7 @@ if [ "$arg3" = "automatic" ]; then
     echo "Completed: Generated $n random numbers"
 
     # Leave a blank line
+    echo ""
     echo "------------------------------------------------------------------------"
     echo ""  
 fi
