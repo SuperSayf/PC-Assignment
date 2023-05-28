@@ -95,6 +95,9 @@ if [ "$arg2" = "scan" ]; then
     # Title for third program
     echo "------------------------Running scan_MPI program-----------------------"
 
+    # Leave a blank line
+    echo ""
+
     mpirun -np $arg4 ./scan_mpi
 
     # Leave a blank line
@@ -197,6 +200,9 @@ if [ "$arg2" = "bitonic" ]; then
 
     # Title for the fifth program
     echo "----------------------------Running bitonic_MPI program-------------------"
+
+    # Leave a blank line
+    echo ""
 
     # Leave a blank line
 
