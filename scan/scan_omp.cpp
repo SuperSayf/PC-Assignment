@@ -97,7 +97,7 @@ int main()
     // Read input from CSV file
     vector<int> nums;
     int num;
-    ifstream input_file("input.bin", ios::binary);
+    ifstream input_file("../input.bin", ios::binary);
 
     while (input_file.read(reinterpret_cast<char *>(&num), sizeof(int)))
     {

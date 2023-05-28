@@ -1,8 +1,10 @@
 generator
-scan
-scan_omp
-scan_mpi
-bitonic
-bitonic_omp
+scan/scan
+scan/scan_omp
+scan/scan_mpi
+scan/output.csv
+bitonic/bitonic
+bitonic/bitonic_omp
+bitonic/bitonic_mpi
+bitonic/output.csv
 input.bin
-output.csv
