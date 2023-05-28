@@ -40,9 +40,6 @@ void blelloch_scan(vector<int> &nums)
         }
     }
 
-    // Save the last value for later use
-    int last = nums[n - 1];
-
     // Set the last element to 0
     nums[n - 1] = 0;
 
@@ -116,7 +113,7 @@ int main(int argc, char **argv)
     int grandSum;
 
     // Now on each process we need to compute the scan of the local input vector
-    for (int i = 1; i < local_input.size(); i++)
+    for (size_t i = 1; i < local_input.size(); i++)
     {
         // Add the previous element to the current element
         local_input[i] += local_input[i - 1];
@@ -143,7 +140,7 @@ int main(int argc, char **argv)
     MPI_Scatter(grandSumArray.data(), 1, MPI_INT, &amtToAdd, 1, MPI_INT, 0, MPI_COMM_WORLD);
 
     // Now on each process add the amtToAdd to each element of the local input vector
-    for (int i = 0; i < local_input.size(); i++)
+    for (size_t i = 0; i < local_input.size(); i++)
     {
         local_input[i] += amtToAdd;
     }
