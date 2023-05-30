@@ -2,6 +2,8 @@
 
 # specify a partition
 #SBATCH -p bigbatch
+# specify the list of nodes
+#SBATCH --nodelist=mscluster{45..48}
 # specify number of nodes
 #SBATCH -N 4
 # specify number of tasks
