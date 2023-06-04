@@ -44,41 +44,20 @@ void checkIfPowerOfTwo(int n)
     }
 }
 
-void blelloch_scan(vector<int> &nums)
+void scan(vector<int> &out, const vector<int> &in)
 {
-    int n = nums.size();
+    int N = in.size();
+    out.resize(N);
 
-    // Up-sweep (reduce) phase
-    int last = 0;
-    for (int d = 1; d < n; d *= 2)
+    if (N > 0)
     {
-        for (int i = 0; i < n; i += 2 * d)
-        {
-            nums[i + 2 * d - 1] += nums[i + d - 1];
-        }
-        last = nums[n - 1];
+        out[0] = in[0];
     }
 
-    // Set root to 0
-    nums[n - 1] = 0;
-
-    // Down-sweep (scan) phase
-    for (int d = n / 2; d > 0; d /= 2)
+    for (int i = 1; i < N; i++)
     {
-        for (int i = 0; i < n; i += 2 * d)
-        {
-            int t = nums[i + d - 1];
-            nums[i + d - 1] = nums[i + 2 * d - 1];
-            nums[i + 2 * d - 1] += t;
-        }
+        out[i] = in[i] + out[i - 1];
     }
-
-    // Increase the size of the array by 1 and set the last element to the last value of the up-sweep phase
-    nums.resize(n + 1);
-    nums[n] = last;
-
-    // Remove the first element of the array
-    nums.erase(nums.begin());
 }
 
 int main()
@@ -102,15 +81,15 @@ int main()
     double start = omp_get_wtime();
 
     // Calculate the scan of the input array
-    blelloch_scan(nums);
+    vector<int> prefix_sum;
+    scan(prefix_sum, nums);
 
     // Stop the timer
     double end = omp_get_wtime();
 
     // Print the prefix sum
-    // for (size_t i = 0; i < nums.size(); i++)
-    // {
-    //     cout << nums[i] << " ";
+    // for (size_t i = 0; i < prefix_sum.size(); i++) {
+    //     cout << prefix_sum[i] << " ";
     // }
 
     cout << endl;
@@ -123,7 +102,7 @@ int main()
     output_file << (end - start) * 1000 << endl;
 
     // Check if the prefix sum is correct
-    validatePrefixSum(temp, nums);
+    validatePrefixSum(temp, prefix_sum);
 
     return 0;
 }
