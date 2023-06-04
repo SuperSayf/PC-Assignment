@@ -18,10 +18,10 @@
 #SBATCH -J bitonic
 # specify the filename to be used for writing output 
 # change the path for your own account here
-#SBATCH -o /home-mscluster/sjumoorty2/slurmOut/%N.%j.out
+#SBATCH -o /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/bitonic/%N.%j.out
 # specify the filename for stderr
 # change the path for your own account here
-#SBATCH -e /home-mscluster/sjumoorty2/slurmOut/%N.%j.err
+#SBATCH -e /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/bitonic/%N.%j.err
 
 #export LD_LIBRARY_PATH=/usr/local/mpich-4.1.1/lib:$LD_LIBRARY_PATH
 #export PATH=/usr/local/mpich-4.1.1/bin:$PATH
