@@ -3,7 +3,7 @@
 # specify a partition
 #SBATCH -p bigbatch
 # specify the list of nodes
-#SBATCH --nodelist=mscluster[45-48]
+##SBATCH --nodelist=mscluster[45-48]
 # specify number of nodes
 #SBATCH -N 4
 # specify number of tasks
@@ -22,9 +22,6 @@
 # specify the filename for stderr
 # change the path for your own account here
 #SBATCH -e /home-mscluster/sjumoorty2/slurmOut/%N.%j.err
-
-# Arguments
-# arg1: n, where n is 2^n
 
 #export LD_LIBRARY_PATH=/usr/local/mpich-4.1.1/lib:$LD_LIBRARY_PATH
 #export PATH=/usr/local/mpich-4.1.1/bin:$PATH
