@@ -1,0 +1,44 @@
+rm -vf generator
+removed 'generator'
+g++ -g -Wall -fopenmp generator.cpp -o generator
+
+-----------------------Starting Number Generation----------------------
+
+Completed: Generated 262144 random numbers
+
+------------------------------------------------------------------------
+
+rm -vf bitonic bitonic_omp bitonic_mpi
+removed 'bitonic'
+removed 'bitonic_omp'
+removed 'bitonic_mpi'
+g++ -g -Wall -fopenmp bitonic.cpp -o bitonic
+g++ -g -Wall -fopenmp bitonic_omp.cpp -o bitonic_omp
+mpic++ -g -Wall -fopenmp bitonic_mpi.cpp -o bitonic_mpi
+
+-----------------------------Running bitonic program----------------------
+
+Time taken: 220.134 ms
+VALID BITONIC SEQUENCE
+
+----------------------------Running bitonic_omp program-------------------
+
+Time taken: 75.9118 ms
+VALID BITONIC SEQUENCE
+
+----------------------------Running bitonic_mpi program-------------------
+
+Time taken: 47.629100 seconds
+VALID BITONIC SEQUENCE
+
+-------------------------------------Speedup-------------------------------
+
+Description               Time (ms)                
+-----------               ---------                
+Serial Time:              220.134 ms               
+Parallel Time:            75.9118 ms               
+MPI Time (np=4):          47.6291 ms               
+
+Speed-up (Serial vs Parallel): 2.89                          
+Speed-up (Serial vs MPI):      4.62                          
+

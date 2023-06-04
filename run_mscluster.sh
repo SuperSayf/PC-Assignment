@@ -2,10 +2,9 @@
 
 # specify a partition
 #SBATCH -p bigbatch
-# specify the list of nodes
-##SBATCH --nodelist=mscluster[45-48]
 # specify number of nodes
 #SBATCH -N 4
+#SBATCH --exclude=mscluster[45-49]
 # specify number of tasks
 #SBATCH --ntasks=16
 # specify number of cores (or threads) per process
@@ -15,16 +14,16 @@
 # specify the wall clock time limit for the job (hh:mm:ss) 5 mins
 ##SBATCH -t 10:00:00
 # specify the job name
-#SBATCH -J bitonic
+#SBATCH -J scan
 # specify the filename to be used for writing output 
 # change the path for your own account here
-#SBATCH -o /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/bitonic/%N.%j.out
+#SBATCH -o /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/scan/%N.%j.out
 # specify the filename for stderr
 # change the path for your own account here
-#SBATCH -e /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/bitonic/%N.%j.err
+#SBATCH -e /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/scan/%N.%j.err
 
-#export LD_LIBRARY_PATH=/usr/local/mpich-4.1.1/lib:$LD_LIBRARY_PATH
-#export PATH=/usr/local/mpich-4.1.1/bin:$PATH
+export LD_LIBRARY_PATH=/usr/local/mpich-4.1.1/lib:$LD_LIBRARY_PATH
+export PATH=/usr/local/mpich-4.1.1/bin:$PATH
 
 export PATH=/home-mscluster/sjumoorty2/openmpi/openmpi-4.1.4/build/bin:$PATH
 export LD_LIBRARY_PATH=/home-mscluster/sjumoorty2/openmpi/openmpi-4.1.4/build/lib:$LD_LIBRARY_PATH
@@ -35,10 +34,10 @@ export LD_LIBRARY_PATH=/home-mscluster/sjumoorty2/openmpi/openmpi-4.1.4/build/li
 # arg3: run all the selected programs with selected input type (manual or automatic)
 # arg4: number of threads for MPI
 
-arg1=16
-arg2="bitonic"
+arg1=30
+arg2="scan"
 arg3="automatic"
-arg4=2
+arg4=8
 
 # Number generation
 if [ "$arg3" = "automatic" ]; then
