@@ -5,6 +5,7 @@
     "iosfwd": "cpp",
     "initializer_list": "cpp",
     "vector": "cpp",
-    "chrono": "cpp"
+    "chrono": "cpp",
+    "limits": "cpp"
   }
 }

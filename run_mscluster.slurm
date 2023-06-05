@@ -34,10 +34,10 @@ export LD_LIBRARY_PATH=/home-mscluster/sjumoorty2/openmpi/openmpi-4.1.4/build/li
 # arg3: run all the selected programs with selected input type (manual or automatic)
 # arg4: number of threads for MPI
 
-arg1=16
-arg2="scan"
+arg1=20
+arg2="bitonic"
 arg3="automatic"
-arg4=2
+arg4=8
 
 # Number generation
 if [ "$arg3" = "automatic" ]; then

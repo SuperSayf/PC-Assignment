@@ -7,7 +7,7 @@
 # arg4: number of threads for MPI
 
 arg1=20
-arg2="scan"
+arg2="bitonic"
 arg3="automatic"
 arg4=4
 
