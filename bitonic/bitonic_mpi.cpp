@@ -93,6 +93,8 @@ int main(int argc, char **argv)
     for (int i = 0; i < N; i++)
         arr[i] = nums[i];
 
+    double start = MPI_Wtime();
+
     MPI_Init(&argc, &argv);
     MPI_Comm_rank(MPI_COMM_WORLD, &rank);
     MPI_Comm_size(MPI_COMM_WORLD, &size);
@@ -102,11 +104,11 @@ int main(int argc, char **argv)
     int local_n = N / size;
     MPI_Scatter(arr, local_n, MPI_INT, recv, local_n, MPI_INT, 0, MPI_COMM_WORLD);
 
-    double start = MPI_Wtime();
     bitonic_sort(recv, local_n, 1);
-    double end = MPI_Wtime();
 
     MPI_Gather(recv, local_n, MPI_INT, arr, local_n, MPI_INT, 0, MPI_COMM_WORLD);
+
+    double end = MPI_Wtime();
 
     if (rank == 0)
     {
