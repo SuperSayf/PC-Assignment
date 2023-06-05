@@ -4,7 +4,7 @@ g++ -g -Wall -fopenmp generator.cpp -o generator
 
 -----------------------Starting Number Generation----------------------
 
-Completed: Generated 1048576 random numbers
+Completed: Generated 262144 random numbers
 
 ------------------------------------------------------------------------
 
@@ -18,27 +18,27 @@ mpic++ -g -Wall -fopenmp scan_mpi.cpp -o scan_mpi
 
 -------------------------Running scan program--------------------------
 
-Time taken: 36.2632 ms
+Time taken: 5.6466 ms
 VALID PREFIX SUM
 
 ------------------------Running scan_omp program-----------------------
 
-Time taken: 7.32393 ms
+Time taken: 3.36065 ms
 VALID PREFIX SUM
 
 ------------------------Running scan_mpi program-----------------------
 
-Time taken: 8.119702 seconds
+Time taken: 5.985220 seconds
 VALID PREFIX SUM
 
 ---------------------------------Speedup-------------------------------
 
 Description               Time (ms)                
 -----------               ---------                
-Serial Time:              36.2632 ms               
-Parallel Time:            7.32393 ms               
-MPI Time (np=4):          8.1197 ms                
+Serial Time:              5.6466 ms                
+Parallel Time:            3.36065 ms               
+MPI Time (np=2):          5.98522 ms               
 
-Speed-up (Serial vs Parallel):      4.95                               
-Speed-up (Serial vs MPI):           4.46                               
+Speed-up (Serial vs Parallel):      1.68                               
+Speed-down (Serial vs MPI):         INVALID, received speed-down of 1.05
 

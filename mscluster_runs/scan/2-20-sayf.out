@@ -1,0 +1,44 @@
+rm -vf generator
+removed 'generator'
+g++ -g -Wall -fopenmp generator.cpp -o generator
+
+-----------------------Starting Number Generation----------------------
+
+Completed: Generated 1048576 random numbers
+
+------------------------------------------------------------------------
+
+rm -vf scan scan_omp scan_mpi
+removed 'scan'
+removed 'scan_omp'
+removed 'scan_mpi'
+g++ -g -Wall -fopenmp scan.cpp -o scan
+g++ -g -Wall -fopenmp scan_omp.cpp -o scan_omp
+mpic++ -g -Wall -fopenmp scan_mpi.cpp -o scan_mpi
+
+-------------------------Running scan program--------------------------
+
+Time taken: 18.9288 ms
+VALID PREFIX SUM
+
+------------------------Running scan_omp program-----------------------
+
+Time taken: 7.36385 ms
+VALID PREFIX SUM
+
+------------------------Running scan_mpi program-----------------------
+
+Time taken: 8.470742 seconds
+VALID PREFIX SUM
+
+---------------------------------Speedup-------------------------------
+
+Description               Time (ms)                
+-----------               ---------                
+Serial Time:              18.9288 ms               
+Parallel Time:            7.36385 ms               
+MPI Time (np=4):          8.47074 ms               
+
+Speed-up (Serial vs Parallel):      2.57                               
+Speed-up (Serial vs MPI):           2.23                               
+
