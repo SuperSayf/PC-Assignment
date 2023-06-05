@@ -17,14 +17,15 @@
 #SBATCH -J scan
 # specify the filename to be used for writing output 
 # change the path for your own account here
-#SBATCH -o /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/scan/%N.%j.out
+#SBATCH -o /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/bitonic/%N.%j.out
 # specify the filename for stderr
 # change the path for your own account here
-#SBATCH -e /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/scan/%N.%j.err
+#SBATCH -e /home-mscluster/sjumoorty2/PC-Assignment/mscluster_runs/bitonic/%N.%j.err
 
 export LD_LIBRARY_PATH=/usr/local/mpich-4.1.1/lib:$LD_LIBRARY_PATH
 export PATH=/usr/local/mpich-4.1.1/bin:$PATH
 
+# My custom compilation of openmpi to compile using mpic++ cause cluster admins are useless
 export PATH=/home-mscluster/sjumoorty2/openmpi/openmpi-4.1.4/build/bin:$PATH
 export LD_LIBRARY_PATH=/home-mscluster/sjumoorty2/openmpi/openmpi-4.1.4/build/lib:$LD_LIBRARY_PATH
 
